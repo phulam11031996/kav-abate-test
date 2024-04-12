@@ -1,36 +1,58 @@
-import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import ReactGA from "react-ga4";
-
-import Homepage from "./pages/homepage";
-import About from "./pages/about";
-import Projects from "./pages/projects";
-import Articles from "./pages/articles";
-import ReadArticle from "./pages/readArticle";
-import Contact from "./pages/contact";
-import Notfound from "./pages/404";
-
-import { TRACKING_ID } from "./data/tracking";
-import "./app.css";
+import "./App.css";
 
 function App() {
-	useEffect(() => {
-		if (TRACKING_ID !== "") {
-			ReactGA.initialize(TRACKING_ID);
-		}
-	}, []);
+	const handleShowTorsoScan = (e) => {
+		e.preventDefault();
+		const modal = document.getElementById("torso-scan-modal-k28vew83vj");
+		modal.style.display = "block";
+	};
 
+	const handleShowBodyScan = (e) => {
+		e.preventDefault();
+		const modal = document.getElementById("body-scan-modal-k28vew83vj");
+		modal.style.display = "block";
+	};
 	return (
-		<div className="App">
-			<Routes>
-				<Route path="/" element={<Homepage />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/projects" element={<Projects />} />
-				<Route path="/articles" element={<Articles />} />
-				<Route path="/article/:slug" element={<ReadArticle />} />
-				<Route path="/contact" element={<Contact />} />
-				<Route path="*" element={<Notfound />} />
-			</Routes>
+		<div
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				width: "100swh",
+				height: "100svh",
+				gap: "10px",
+			}}
+		>
+			<button
+				className="btn"
+				style={{
+					backgroundColor: "#00B7F4",
+					color: "white",
+					padding: "1rem",
+					border: 0,
+					fontSize: "1rem",
+					borderRadius: "30px",
+					cursor: "pointer",
+				}}
+				onClick={(e) => handleShowBodyScan(e)}
+			>
+				Show body scan
+			</button>
+			<button
+				className="btn"
+				style={{
+					backgroundColor: "#00B7F4",
+					color: "white",
+					padding: "1rem",
+					border: 0,
+					fontSize: "1rem",
+					borderRadius: "30px",
+					cursor: "pointer",
+				}}
+				onClick={(e) => handleShowTorsoScan(e)}
+			>
+				Show torso scan
+			</button>
 		</div>
 	);
 }
